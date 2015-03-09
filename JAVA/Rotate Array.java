@@ -19,6 +19,7 @@ public class Solution {
         }
     }
     
+// Greatest Common Divisor
     private int gcd(int a, int b)
     {
         if (b > a)
