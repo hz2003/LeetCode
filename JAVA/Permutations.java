@@ -1,7 +1,7 @@
 public class Solution {
 
-    // return permutations of {1, 2, ..., n}
-    public List<List<Integer>> permutation(int n)
+    // return permutations of {0, 1, 2, ..., n-1}
+    private List<List<Integer>> permutation(int n)
     {
         List<List<Integer>> result = new ArrayList<List<Integer>>();
         if(n == 1)
