@@ -1,4 +1,6 @@
 public class Solution {
+
+    // return permutations of {1, 2, ..., n}
     public List<List<Integer>> permutation(int n)
     {
         List<List<Integer>> result = new ArrayList<List<Integer>>();
