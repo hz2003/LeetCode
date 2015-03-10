@@ -1,0 +1,35 @@
+public class Solution {
+    private int coding(char ch)
+    {
+        if(ch == 'A')
+            return 0;
+        if(ch == 'C')
+            return 1;
+        if(ch == 'G')
+            return 2;
+        return 3;
+    }
+    public List<String> findRepeatedDnaSequences(String s) {
+        HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
+        List<String> result = new ArrayList<String>();
+        if (s.length() <= 10)
+            return result;
+        int sub = 0;
+        for(int i = 0; i < 10; i++)
+            sub = sub * 4 + coding(s.charAt(i));
+        map.put(sub, 1);
+        for(int i = 1; i < s.length() - 9; i++)
+        {
+            sub -= 262144*coding(s.charAt(i - 1));
+            sub = sub * 4 + coding(s.charAt(i + 9));
+            int t = map.get(sub) == null? 0 : map.get(sub);
+            if(t == 1)
+                result.add(s.substring(i, i + 10));
+            
+            if(t < 2)
+                map.put(sub, t + 1);
+
+        }
+        return result;
+    }
+}

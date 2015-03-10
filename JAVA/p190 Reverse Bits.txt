@@ -1,0 +1,21 @@
+public class Solution {
+    // you need treat n as an unsigned value
+    private static int ones[];
+    Solution()
+    {
+        ones = new int[32];
+        ones[0] = 1;
+        for(int i = 1; i < 32; i++)
+            ones[i] = ones[i - 1] << 1; 
+    }
+    
+    public int reverseBits(int n) {
+        int result = 0;
+        for(int i = 0; i < 32; i++)
+        {
+            if((n & ones[i]) != 0)
+                result = result | ones[31 - i];
+        }
+        return result;
+    }
+}
