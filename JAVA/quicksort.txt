@@ -1,0 +1,12 @@
+void quicksort(int a, int c)
+{
+	if (c <= a)
+		return;
+	int b = a;
+	for(int i = a + 1; i <= c; i++)
+		if (A[i] < A[a])
+			swap(++b, i);
+	swap(b, a);
+	quicksort(a, b - 1);
+	quicksort(b + 1, c);
+}
