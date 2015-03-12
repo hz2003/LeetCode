@@ -1,0 +1,70 @@
+public class Solution {
+    
+    int[] num;
+    int[] digits;
+    private void swap(int a, int b)
+    {
+        int temp = num[a];
+        num[a] = num[b];
+        num[b] = temp;
+    }
+    
+    private void quicksort(int a, int c)
+    {
+        if(c <= a)
+            return;
+        swap(a, a + (int) ((c - a + 1) * Math.random()));
+        int b = a;
+        for(int i = a + 1; i <= c; i++)
+            if (comparison(num[i], num[a]) < 0)
+                swap(++b, i);
+        swap(b, a);
+        quicksort(a, b - 1);
+        quicksort(b + 1, c);
+    }
+    
+    private int numOfDigits(long a)
+    {
+        if (a == 0)
+            return 1;
+        int result = 0;
+        while(a != 0)
+        {
+            result++;
+            a /= 10;
+        }
+        return result;
+    }
+    
+    private int comparison(long a, long b)
+    {
+        long ab = a; int la = numOfDigits(a), lb = numOfDigits(b);
+        for(int i = 0; i < lb; i++)
+            ab *= 10;
+        ab += b;
+        
+        long ba = b;
+        for(int i = 0; i < la; i++)
+            ba *= 10;
+        ba += a;
+        
+        if(ab < ba)
+            return -1;
+        if(ab == ba)
+            return 0;
+        return 1;
+    }
+    
+    public String largestNumber(int[] num) {
+        this.num = num;
+        digits = new int[num.length];
+        quicksort(0, num.length - 1);
+        String result = "";
+        for(int i = num.length - 1; i >= 0; i--)
+            result += num[i];
+        if(result.charAt(0) == '0')
+            return "0";
+        return result;
+    }
+}
+
